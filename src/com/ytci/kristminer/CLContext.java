@@ -11,7 +11,6 @@ import org.lwjgl.opencl.CLDevice;
 import org.lwjgl.opencl.CLPlatform;
 
 import java.io.Closeable;
-import java.io.IOException;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;

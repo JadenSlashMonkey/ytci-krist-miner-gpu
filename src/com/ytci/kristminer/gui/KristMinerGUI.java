@@ -14,11 +14,11 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.Random;
 import java.awt.Dimension;
-import javax.swing.JToggleButton;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class KristMinerGUI extends JFrame {
 
 	private JPanel contentPane;
@@ -122,7 +122,7 @@ public class KristMinerGUI extends JFrame {
 	
 	private void validateSettings() {
 		if (!(tfAddress.getText().length() == 10 && tfAddress.getText().charAt(0) == 'k')) {
-			new JOptionPane().showMessageDialog(null,"Address should be 10 characters long and start with 'k'.\nv1 addresses are insecure and not supported.","Invalid Address!",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,"Address should be 10 characters long and start with 'k'.\nv1 addresses are insecure and not supported.","Invalid Address!",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
