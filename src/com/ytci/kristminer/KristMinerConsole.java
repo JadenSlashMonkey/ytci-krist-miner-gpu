@@ -5,6 +5,6 @@ package com.ytci.kristminer;
  */
 public class KristMinerConsole {
     public static void main(String[] args) {
-        new KristMiner(new KristConfig(args));
+        new KristMiner(new KristMinerConfig(args));
     }
 }

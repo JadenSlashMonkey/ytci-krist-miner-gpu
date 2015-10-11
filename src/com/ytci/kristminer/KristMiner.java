@@ -17,10 +17,10 @@ public class KristMiner {
     public int work;
     public int balance;
 
-    public KristConfig theConfig;
+    public KristMinerConfig theConfig;
     public CLContext theCLContext = new CLContext();
 
-    public KristMiner(KristConfig config) {
+    public KristMiner(KristMinerConfig config) {
         theConfig = config;
 
         if (!theConfig.didSucceed()) {

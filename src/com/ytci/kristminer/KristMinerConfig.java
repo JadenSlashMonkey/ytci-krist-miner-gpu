@@ -7,7 +7,7 @@ import org.apache.commons.cli.*;
  *
  * @author Lignum
  */
-public class KristConfig {
+public class KristMinerConfig {
     private String[] args;
     private Options options = new Options();
 
@@ -19,7 +19,7 @@ public class KristConfig {
     /**
      * @param args The command line arguments to be parsed.
      */
-    public KristConfig(String[] args) {
+    public KristMinerConfig(String[] args) {
         this.args = args;
 
         // TODO: Localise the descriptions?
@@ -35,7 +35,7 @@ public class KristConfig {
      * @param address Address to mine for
      * @param prefix Prefix for nonces
      */
-    public KristConfig(String address, String prefix) {
+    public KristMinerConfig(String address, String prefix) {
     	this.address = address;
     	this.prefix = prefix;
     	success = true;
