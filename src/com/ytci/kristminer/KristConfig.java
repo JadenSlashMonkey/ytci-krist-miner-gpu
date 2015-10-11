@@ -31,6 +31,17 @@ public class KristConfig {
     }
 
     /**
+     * Manually set address and prefix
+     * @param address Address to mine for
+     * @param prefix Prefix for nonces
+     */
+    public KristConfig(String address, String prefix) {
+    	this.address = address;
+    	this.prefix = prefix;
+    	success = true;
+    }
+    
+    /**
      * Parses the command line args.
      * @return Whether parsing succeeded or not.
      */

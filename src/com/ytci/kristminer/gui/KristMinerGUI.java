@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.ytci.kristminer.KristConfig;
+import com.ytci.kristminer.KristMiner;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -21,6 +25,8 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class KristMinerGUI extends JFrame {
 
+	private KristMiner miner;
+	
 	private JPanel contentPane;
 	private JTextField tfAddress;
 	private JTextField tfPrefix;
@@ -109,8 +115,11 @@ public class KristMinerGUI extends JFrame {
 		btnStart = new JButton("Start mining");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				validateSettings();
-				// TODO: Hook into KristMiner and start mining; change "start" to "stop", add info panel, etc
+				if (validateSettings()) {
+					miner = new KristMiner(new KristConfig(tfAddress.getText(), tfPrefix.getText()));
+				} else {
+					
+				}
 			}
 		});
 		GridBagConstraints gbc_btnStart = new GridBagConstraints();
@@ -120,10 +129,12 @@ public class KristMinerGUI extends JFrame {
 		configPanel.add(btnStart, gbc_btnStart);
 	}
 	
-	private void validateSettings() {
+	private boolean validateSettings() {
 		if (!(tfAddress.getText().length() == 10 && tfAddress.getText().charAt(0) == 'k')) {
 			JOptionPane.showMessageDialog(null,"Address should be 10 characters long and start with 'k'.\nv1 addresses are insecure and not supported.","Invalid Address!",JOptionPane.ERROR_MESSAGE);
+			return false;
 		}
+		return true;
 	}
 
 }
