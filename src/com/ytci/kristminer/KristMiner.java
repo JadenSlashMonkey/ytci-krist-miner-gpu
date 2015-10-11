@@ -1,28 +1,27 @@
 package com.ytci.kristminer;
 
 public class KristMiner {
+    public boolean paused = false;
+    public final Object newBlockReady = new Object();
+    public final Object pausedLock = new Object();
+    public final Object submitReady = new Object();
+    public final Object hashesDoneLock = new Object();
+    public final Object blocksDoneLock = new Object();
 
-    static boolean paused = false;
-    static final Object newBlockReady = new Object();
-    static final Object pausedLock = new Object();
-    static final Object submitReady = new Object();
-    static final Object hashesDoneLock = new Object();
-    static final Object blocksDoneLock = new Object();
+    public String nonceSubmission = "";
+    public long hashesDone = 0;
+    public int blocksDone = 0;
+    public long startTime = 0;
 
-    static String nonceSubmission = "";
-    static long hashesDone = 0;
-    static int blocksDone = 0;
-    static long startTime = 0;
+    public String block;
+    public int work;
+    public int balance;
 
-    static String block;
-    static int work;
-    static int balance;
+    public KristConfig theConfig;
+    public CLContext theCLContext = new CLContext();
 
-    static KristConfig theConfig;
-    static CLContext theCLContext = new CLContext();
-
-    public static void main(String[] args) {
-        theConfig = new KristConfig(args);
+    public KristMiner(KristConfig config) {
+        theConfig = config;
 
         if (!theConfig.didSucceed()) {
             System.err.println("Command line failed! Specify --help/-? for help.");
@@ -41,65 +40,64 @@ public class KristMiner {
         
         // Start mining with OpenCL
         theCLContext = new CLContext(); // Initialises an OpenCL context.
-        
     }
 
-    public static void addHashesDone(int amt) {
+    public void addHashesDone(int amt) {
         synchronized(hashesDoneLock) {
             hashesDone += amt;
         }
     }
 
-    public static double getHPS() {
+    public double getHPS() {
         synchronized(hashesDoneLock) {
             return ((double)hashesDone)/(System.currentTimeMillis() - startTime) * 1000;
         }
     }
 
-    public static void addBlocksDone(int amt) {
+    public void addBlocksDone(int amt) {
         synchronized(blocksDoneLock) {
             blocksDone += amt;
         }
     }
 
-    public static int getBlocksDone() {
+    public int getBlocksDone() {
         synchronized(blocksDoneLock) {
             return blocksDone;
         }
     }
 
-    public static double getBPM() {
+    public double getBPM() {
         synchronized(blocksDoneLock) {
             return ((double)blocksDone)/(System.currentTimeMillis() - startTime) * 1000 * 60;
         }
     }
 
-    public static boolean isPaused() {
+    public boolean isPaused() {
         synchronized(pausedLock) {
             return paused;
         }
     }
 
-    public static void pause(boolean p) {
+    public void pause(boolean p) {
         synchronized(pausedLock) {
             paused = p;
         }
     }
 
-    public static void blockChanged(String block) {
+    public void blockChanged(String block) {
         System.out.println("Block changed! New block: " + block);
-        KristMiner.block = block;
+        this.block = block;
     }
 
-    public static void workChanged(int work) {
+    public void workChanged(int work) {
         System.out.println("Work changed! New work: " + work);
     }
 
-    public static void balanceChanged(int balance) {
-        KristMiner.balance = balance;
+    public void balanceChanged(int balance) {
+        this.balance = balance;
     }
 
-    public static void submitBlock(String nonce) {
+    public void submitBlock(String nonce) {
         nonceSubmission = nonce;
         synchronized(submitReady) {
             submitReady.notify();
