@@ -202,7 +202,7 @@ public class KristMiner {
         theConfig = new KristConfig(args);
 
         if (!theConfig.didSucceed()) {
-            System.err.println("Command line failed!");
+            System.err.println("Command line failed! Specify --help/-? for help.");
             System.exit(1);
             return;
         }
