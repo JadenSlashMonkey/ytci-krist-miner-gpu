@@ -42,7 +42,7 @@ public class KristConfig {
 
             if (cmd.hasOption('?')) {
                 new HelpFormatter().printHelp("java -jar KristMiner.jar", options);
-                return true; // User requested help; do nothing
+                return false; // User requested help; do nothing
             }
 
             if (!cmd.hasOption('a')) {
