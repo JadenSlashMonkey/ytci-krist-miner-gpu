@@ -1,6 +1,8 @@
 package com.ytci.kristminer;
 
-public class KristMiner {
+import java.util.Observable;
+
+public class KristMiner extends Observable {
     public boolean paused = false;
     public final Object newBlockReady = new Object();
     public final Object pausedLock = new Object();
@@ -102,5 +104,10 @@ public class KristMiner {
         synchronized(submitReady) {
             submitReady.notify();
         }
+    }
+    
+    @Override
+    public void notifyObservers(Object arg) {
+    	// TODO
     }
 }

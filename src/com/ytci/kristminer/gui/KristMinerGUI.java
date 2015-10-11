@@ -2,6 +2,8 @@ package com.ytci.kristminer.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,7 +19,7 @@ import com.ytci.kristminer.gui.views.StatusPanel;
  *
  */
 @SuppressWarnings("serial")
-public class KristMinerGUI extends JFrame {
+public class KristMinerGUI extends JFrame implements Observer {
 
 	private JPanel contentPane, configPanel, statusPanel;
 	public static void main(String[] args) {
@@ -52,6 +54,11 @@ public class KristMinerGUI extends JFrame {
 		// Add status panel
 		statusPanel = new StatusPanel();
 		contentPane.add(statusPanel, BorderLayout.CENTER);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO
 	}
 
 }
