@@ -2,6 +2,6 @@
 A GPU implmentation of ytci-krist-miner
 
 # Planned Implementation
-[cryptsha256_kernel_GPU from JohnTheRipper](https://github.com/magnumripper/JohnTheRipper/blob/bleeding-jumbo/src/opencl/cryptsha256_kernel_GPU.cl)
+[DiabloMiner.cl from DiabloMiner](https://github.com/Diablo-D3/DiabloMiner/blob/master/src/main/resources/DiabloMiner.cl)
 and
 [OpenCL in LWJGL](http://wiki.lwjgl.org/wiki/OpenCL_in_LWJGL)
