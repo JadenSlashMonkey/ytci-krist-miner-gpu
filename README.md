@@ -1,3 +1,5 @@
+# WARNING: ABANDONED
+Other miners are worked on, and in different languages. (Privately, but will go public) Stay tuned.
 # ytci-krist-miner-gpu [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/justync7/ytci-krist-miner-gpu?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 A GPU implmentation of ytci-krist-miner
 
